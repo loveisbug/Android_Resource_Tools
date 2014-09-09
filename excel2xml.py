@@ -1,6 +1,6 @@
 # python2.7.2
 # author : eric zhang
-# email  : eric.zhang@dediprog.com
+# email  : ericnomail@gmail.com
 # date       version   PIC    comments
 # 20120518    0.0.1    eric
 # 20120529    0.0.2    eric   generate strings.xml from xls file.
@@ -23,13 +23,13 @@ import os.path
 def android_str_2_excel():
     w = Workbook()
     ws = w.add_sheet("Android")
-    parser = BeautifulSoup(urllib.urlopen('file:D:\\code\\ant\\trunk\\Android\\TVMan_DVB\\res\\values\\strings.xml').read())
+    parser = BeautifulSoup(urllib.urlopen('file:D:\\Android_Prj\\res\\values\\strings.xml').read())
     i = 0
     for strid in parser.findAll('string'):
         ws.write(i, 0, strid['name'])
         ws.write(i, 1, strid.text)
         i += 1
-    w.save('tvman_dvb_android_str.xls')
+    w.save('android_str.xls')
 
 # used only once, add the second content of strings.xml to excel file.
 def reset_ch_str():
@@ -40,12 +40,12 @@ def reset_ch_str():
     for i in range(len(sheets[0][1]) / 2):
         for j in range(2):
             ws[0].write(i, j, sheets[0][1][(i, j)])
-    parser = BeautifulSoup(urllib.urlopen('file:D:\\code\\ant\\trunk\\Android\\TVMan_DVB\\res\\values-zh-rCN\\strings.xml').read())
+    parser = BeautifulSoup(urllib.urlopen('file:D:\\Android_Prj\\res\\values-zh-rCN\\strings.xml').read())
     i = 0
     for strid in parser.findAll('string'):
         ws[0].write(i, 2, strid.text)
         i += 1
-    w.save('tvman_dvb_android_str.xls')
+    w.save('android_str.xls')
 
 # template to generate a line of strings.xml
 def line_template(str_id, lan_str):
